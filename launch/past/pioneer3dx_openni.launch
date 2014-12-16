@@ -1,0 +1,23 @@
+<launch>
+<!-- openni_launch を起動 -->
+<!-- openni.launchを発見して、それをlaunchする -->
+<include file="$(find openni_launch)/launch/openni.launch" />
+--------------------
+<!-- depthimage_to_laserscan を起動-->
+<!-- depthimageをlaserscanデータに変換する -->
+<node pkg="depthimage_to_laserscan" type="depthimage_to_laserscan" name="depthimage_to_laserscan">
+    <remap from="image" to="/camera/depth/image" />
+</node>
+--------------------
+<!-- RosAria を起動 -->
+<!-- Pioneer3DXを起動するためのモジュール -->
+<node pkg="ROSARIA" type="RosAria" name="RosAria" />
+--------------------
+<!-- rob_teleop を起動 -->
+<!-- 操縦のためのモジュール -->
+<node pkg="ROSARIA" type="rob_teleop" name="rob_teleop" />
+--------------------
+<!-- tf を起動 -->
+<!-- 座標変換のためのモジュール -->
+<node pkg="tf" type="static_transform_publisher" name="base_to_kinect_broadcaster" args="0.17 0.0 0.250 0 0 0 base_link camera_link 20" />
+</launch>

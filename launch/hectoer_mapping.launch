@@ -1,0 +1,12 @@
+<launch>
+
+
+ <!-- Start SLAM -->
+    <node pkg="hector_mapping" type="hector_mapping" name="hector_mapping" output="screen">
+
+        <param name="map_size" value="5000"/>
+
+    </node>
+
+
+</launch>

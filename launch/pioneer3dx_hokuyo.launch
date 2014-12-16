@@ -1,0 +1,22 @@
+<launch>
+<!-- hokuyo_node を起動 -->
+<!-- URG-04LX-UG01を起動するためのモジュール -->
+<!-- <node pkg="hokuyo_node" type="hokuyo_node" name="hokuyo_node" /> -->
+<node pkg="urg_node" type="urg_node" name="urg_node" />
+
+<!-- RosAria を起動 -->
+<!-- Pioneer3DXを起動するためのモジュール -->
+<node pkg="rosaria" type="RosAria" name="RosAria" />
+
+<!-- rob_teleop を起動 -->
+<!-- 操縦のためのモジュール -->
+<node pkg="learning_tf" type="rob_teleop" name="rob_teleop" />
+
+<!-- tf を起動 -->
+<!-- 座標変換のためのモジュール -->
+<node pkg="tf" type="static_transform_publisher" name="base_to_laser_broadcaster" args="0.20 0.0 0.250 0 0 0 base_link laser 100" />
+
+<!-- rviz -->
+<node pkg="rviz" type="rviz" name="rviz" />
+</launch>
+
